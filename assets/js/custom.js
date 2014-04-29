@@ -5,16 +5,36 @@
         mainRegion: "#main-region"
     });
 
-    ContactManager.StaticView = Marionette.ItemView.extend({
-        template: "#static-template"
+    ContactManager.Contact = Backbone.Model.extend({
+        defaults: {
+            firstName: "",
+            phoneNumber: "No phone number"
+        }
+
+    });
+
+    ContactManager.ContactView = Marionette.ItemView.extend({
+        template: "#contact-template",
+        events: {
+            "click p": "alertPhoneNumber"
+        },
+        alertPhoneNumber: function() {
+            alert(this.model.escape("phoneNumber"));
+        }
     });
 
     ContactManager.on("initialize:after", function() {
-        var staticView = new ContactManager.StaticView({
-            template: "#list-item-template",
-            tagName: "ul"
+        var alice = new ContactManager.Contact({
+            firstName: "Alice",
+            lastName: "Arten"
+
         });
-        ContactManager.mainRegion.show(staticView);
+
+        var aliceView = new ContactManager.ContactView({
+            model: alice
+        });
+
+        ContactManager.mainRegion.show(aliceView);
     });
 
     ContactManager.start();
