@@ -13,7 +13,8 @@
     });
 
     ContactManager.ContactCollection = Backbone.Collection.extend({
-        model: ContactManager.Contact
+        model: ContactManager.Contact,
+        comparator: "firstName"
     })
 
     ContactManager.ContactItemView = Marionette.ItemView.extend({
@@ -28,9 +29,19 @@
 
     ContactManager.on("initialize:after", function() {
         var contacts = new ContactManager.ContactCollection([
-             {
+            {
+                firstName: "Alice",
+                lastName: "Tampen"
+
+            },
+            {
                 firstName: "Bob",
                 lastName: "Brigham",
+                phoneNumber: "555-0163"
+            },
+            {
+                firstName: "Alice",
+                lastName: "Artsy",
                 phoneNumber: "555-0163"
             },
             {
@@ -42,6 +53,10 @@
                 firstName: "Charlie",
                 lastName: "Campbell",
                 phoneNumber: "555-0129"
+            },
+            {
+                firstName: "Alice",
+                lastName: "Smith"
             }
         ]);
 
