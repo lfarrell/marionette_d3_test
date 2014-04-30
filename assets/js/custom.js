@@ -14,7 +14,9 @@
 
     ContactManager.ContactCollection = Backbone.Collection.extend({
         model: ContactManager.Contact,
-        comparator: "firstName"
+        comparator: function(name) {
+            return [name.get("firstName"), name.get("lastName")]
+        }
     })
 
     ContactManager.ContactItemView = Marionette.ItemView.extend({
