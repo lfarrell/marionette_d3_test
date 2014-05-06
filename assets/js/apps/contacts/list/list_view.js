@@ -8,4 +8,4 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
         tagName: "ul",
         itemView: List.Contact
     });
-})
+});
