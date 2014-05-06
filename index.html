@@ -33,6 +33,20 @@
     <script src="assets/js/vendor/backbone.js"></script>
     <script src="assets/js/vendor/backbone.marionette.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/entities/contact.js"></script>
+    <script>
+    ContactManager.on("initialize:after", function() {
+        var contacts = ContactManager.request("contact:entities");
+
+        var contactsListView = new ContactManager.ContactsView({
+            collection: contacts
+        });
+
+        ContactManager.mainRegion.show(contactsListView);
+    });
+
+    ContactManager.start();
+    </script>
   </body>
 </html>
